@@ -1,0 +1,46 @@
+Self-Healing Monocular Digital Twins via 3D
+Gaussian Splatting for Autonomous Edge Systems
+
+Shivam Goel
+23BAI1534
+Ayush Upadhyay
+23BAI1231
+Divyanshu Patel
+23BAI1214
+
+Abstract
+Autonomous perception systems rely heavily on camera-based inputs to understand and inter-
+act with real-world environments. However, visual sensors are prone to degradation due to
+environmental factors such as rain, fog, occlusion, and temporary sensor failure, which can
+significantly affect system reliability. This project proposes a Self-Healing Monocular Digital
+Twin framework that enables real-time three-dimensional scene reconstruction and perception
+continuity using a single moving camera.
+The proposed approach leverages 3D Gaussian Splatting (3DGS), a recent neural scene
+representation technique capable of producing high-quality 3D reconstructions with real-time
+rendering performance. In contrast to traditional neural radiance field-based methods, which
+are computationally intensive and unsuitable for dynamic environments, 3DGS enables effi-
+cient scene updates and fast inference, making it suitable for time-critical autonomous systems.
+The system integrates monocular visual odometry and simultaneous localization and map-
+ping with dynamic Gaussian splatting to construct and maintain a continuously evolving digital
+twin of the surrounding environment. Temporal consistency mechanisms are incorporated to
+accurately model dynamic objects such as vehicles and pedestrians. The key contribution of
+this project is a self-healing perception mechanism, wherein previously reconstructed scene in-
+formation is utilized to reconstruct or infer missing visual data when live camera input becomes
+unreliable or unavailable.
+The model is trained using self-supervised learning techniques on large-scale autonomous
+driving datasets and is designed with an emphasis on computational efficiency and edge-oriented
+deployment feasibility. This work aims to contribute toward robust and fault-tolerant percep-
+tion systems by combining three-dimensional geometry, deep learning, and real-time scene
+representation techniques for autonomous applications.
+Project Requirements
+Software and Computational Requirements
+• Python 3.10 or higher
+• PyTorch deep learning framework
+• CUDA-enabled GPU environment for model training
+• OpenCV for visual processing
+• Linux-based development environment
+Datasets
+• Publicly available autonomous driving datasets
+Tools and Frameworks
+• Monocular SLAM and visual odometry pipelines
+• 3D Gaussian Splatting-based scene representation models

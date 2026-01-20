@@ -1,0 +1,56 @@
+Project Roadmap: Self-Healing Monocular Digital Twins via 3D Gaussian Splatting
+
+Phase 1: Foundation & Prototype (Current 30% Scope)
+Goal: Establish the pipeline, handle data, and create a functional but simplified Digital Twin representation.
+
+1. Data Pipeline
+- Dataset: KITTI Odometry (Sequence 00/01).
+- Functionality: Loading images (Color/Grayscale), reading camera calibration matrices.
+- Output: Stream of ordered frames.
+
+2. Monocular Visual Odometry (VO) Legacy
+- Method: Classical Geometry (OpenCV).
+- Technique: FAST/ORB Feature Detection + Lucas-Kanade Optical Flow.
+- Pose Estimation: 5-Point Algorithm (findEssentialMat) + Recover Pose.
+- Mapping: Sparse 3D Point Cloud generation via Triangulation.
+- Status: Basic tracking, drift expected.
+
+3. Digital Twin Representation
+- Concept: Converting sparse point clouds into 3D Gaussian Primitive objects.
+- Attributes: Mean (XYZ), Color (Image intensity), Variance (Scale placeholder).
+- Rendering: Simple projection logic for visualization.
+
+4. Basic Self-Healing
+- Mechanism: Keep-Alive logic.
+- Trigger: Significant loss of tracked visual features (simulated occlusion).
+- Action: Predict next system state using Constant Velocity Model (Dead Reckoning) to fill gaps in tracking.
+
+Phase 2: Advanced Representation & Optimization (Next 40%)
+Goal: Upgrade the representation to true 3D Gaussian Splatting and improve VO stability.
+
+1. True 3D Gaussian Splatting
+- Upgrade: Replace Python-object Gaussians with CUDA-optimized Gaussian Kernels.
+- Rendering: Real-time rasterization using specific splatting libraries.
+- Optimization: Differentiable training loop to refine Gaussian parameters based on reprojection error.
+
+2. Dense Mapping
+- Upgrade: Move from Sparse Features to Semi-Dense or Dense Depth Maps.
+- Technique: Multi-View Stereo (MVS) or Depth-from-Motion integration.
+
+3. Loop Closure & Optimization
+- Upgrade: Implement Backend Optimization (g2o / GTSAM).
+- Feature: Detect when the vehicle returns to a known location and correct cumulative drift.
+
+Phase 3: AI-Driven Self-Healing & Deployment (Final 30%)
+Goal: Replace classical assumptions with Deep Learning for robust failure recovery.
+
+1. Neural Self-Healing
+- Upgrade: Replace Constant Velocity Model with a Generative AI Model.
+- Technique: NeRF or Diffusion-based in-painting to reconstruct missing parts of the Digital Twin when the camera is blocked.
+
+2. Deep Visual Odometry
+- Upgrade: Replace OpenCV features with Deep Features (SuperPoint) or End-to-End VO.
+
+3. Edge Deployment
+- Goal: Optimization for hardware like NVIDIA Jetson.
+- Technique: Model compression, TensorRT optimization.
